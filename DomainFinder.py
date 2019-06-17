@@ -37,7 +37,6 @@ while (True):
         if (len(list_limit) < 10 ):
             break
         _thread.start_new_thread(dnschecker, (list_limit,))
-        thrd_count += 1
         start_index += 100
         time.sleep(2)
     except KeyboardInterrupt:
