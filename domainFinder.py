@@ -4,11 +4,12 @@ import time
 
 # set domain properties
 DOMAIN_PREFIX = ""
-DOMAIN_SUFFIX = "curve.com"
+DOMAIN_SUFFIX = "chat.com"
 
 # read keywords
 file = open("positive-words.txt","r")
 word_list = file.readlines()
+word_list = sorted(word_list, key=len)
 file.close()
 
 # output file
@@ -24,8 +25,10 @@ def dnschecker(keywords):
             whois_chk = whois.whois(host)
             print ("{}  - Not Avaiable".format(host))
         except whois.parser.PywhoisError:
-            print ("{}  - AVAIALBE".format(host))
+            print ("\u001b[32m{}  - AVAIALBE\u001b[0m".format(host))
             out_file.write("{}\n".format(host))
+        except Exception as exp:
+            pass
 
 hostnames_ln = len(word_list)
 start_index = 0
